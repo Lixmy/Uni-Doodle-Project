@@ -3,11 +3,13 @@ package iut.gon.tp2;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -70,6 +72,21 @@ public class TP2App extends Application {
 
   /** Prépare les menus et leurs événements */
   private void prepareMenus(MenuBar menus) {
+	  Menu m1 = new Menu("_Fichiers");
+	  Menu m2 = new Menu("_Aide");
+	  menus.getMenus().addAll(m1, m2);
+	  MenuItem i1 = new MenuItem("Quitter");
+	  MenuItem i2 = new MenuItem("A propos");
+	  m1.getItems().addAll(i1);
+	  m2.getItems().addAll(i2);
+	  i1.setOnAction(event -> Platform.exit());
+	  i2.setOnAction(event -> {
+		  Alert a = new Alert(AlertType.NONE, "", ButtonType.CLOSE);
+		  a.setTitle("A propos");
+		  a.setContentText("Fait par... moi");
+		  a.show();
+	  });
+	  
     //TODO Remplir la barre de menus
   }
 
