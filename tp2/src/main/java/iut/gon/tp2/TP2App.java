@@ -36,6 +36,8 @@ public class TP2App extends Application {
     prepareListe();
     prepareBoutons();
     prepareFermeture(stage);
+    versDroite.setOnAction(e -> deplacerElement(gauche, droite));
+    versGauche.setOnAction(e -> deplacerElement(droite, gauche));
 
     stage.setTitle("Gestion de groupe");
     stage.setScene(scene);
@@ -61,12 +63,26 @@ public class TP2App extends Application {
   private void onAjouteTout(ActionEvent actionEvent) {
     droite.getItems().addAll(gauche.getItems());
     gauche.getItems().clear();
+    ajouteTout.setDisable(true);
+    retireTout.setDisable(false);
     //TODO active/désactive les boutons
+  }
+  
+  private void deplacerElement(ListView<String> source, ListView<String> destination) {
+	  int i = source.getSelectionModel().getSelectedIndex();
+	  if(i != -1) {
+		  String element = source.getItems().remove(i);
+		  destination.getItems().add(element);
+	  }
   }
 
   /** Ajoute tous les éléments de droite dans la liste de gauche
    Active le bouton "Ajouter tout" et désactive le bouton "Retirer tout" */
   private void onRetireTout(ActionEvent actionEvent) {
+	  gauche.getItems().addAll(droite.getItems());
+	  droite.getItems().clear();
+	  ajouteTout.setDisable(false);
+	  retireTout.setDisable(true);
     //TODO
   }
 
