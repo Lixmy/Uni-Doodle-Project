@@ -95,6 +95,16 @@ public class TP2App extends Application {
    Active le bouton "Ajouter tout"
    */
   private void prepareListe() {
+	  String s1 = "jolie jonquilles";
+	  String s2 = "parfaites paquerettes";
+	  String s3 = "lisse lys";
+	  String s4 = "prolétaires pivoines";
+	  gauche.getItems().add(s1);
+	  gauche.getItems().add(s2);
+	  gauche.getItems().add(s3);
+	  gauche.getItems().add(s4);
+	  ajouteTout.setDisable(false);
+	  
     //TODO active le bouton "Ajouter tout"
   }
 
