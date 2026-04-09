@@ -6,11 +6,10 @@ import javafx.scene.control.ButtonType;
 public class Dialogues {
 	
 	public static boolean confirmation() {
-		Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+		Alert a = new Alert(Alert.AlertType.CONFIRMATION, "ZETES SUR DE VOULOIR FAIRE CECI ? ", ButtonType.YES, ButtonType.NO);
 		a.setTitle("Vous êtes sûr ???");
-		a.setContentText("ZETES SUR DE VOULOIR FAIRE CECI?");
 		
-		if(a.showAndWait().get() == ButtonType.YES) {
+		if(a.showAndWait().get() == ButtonType.NO) {
 			return true;
 		}
 		return false;
