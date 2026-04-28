@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,12 +16,33 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-
+    private double prevX;
+    private double prevY;
+    
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("CadreGribouille"), 640, 480);
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(e -> {
+        	if(Dialogues.confirmation() == true) {
+        		e.consume();
+        	}
+        });
+        
+        Canvas dessin = (Canvas) scene.lookup("Canvas");
+        dessin.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+        	prevX = e.getX();
+        	prevY = e.getY();
+        });
+        
+        dessin.addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> {
+        	dessin.getGraphicsContext2D().strokeLine(prevX, prevY, e.getX(), e.getY());
+        	prevX = e.getX();
+        	prevY = e.getY();
+        });
+        
+        
     }
 
     static void setRoot(String fxml) throws IOException {
