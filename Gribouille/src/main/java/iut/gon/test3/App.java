@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,6 +44,17 @@ public class App extends Application {
         	prevX = e.getX();
         	prevY = e.getY();
         });
+        
+        Pane pane = (Pane) dessin.getParent();
+        pane.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+        	if(e.getButton() == MouseButton.SECONDARY) {
+        		Circle c = new Circle(e.getX(), e.getY(), 5);
+        		c.setMouseTransparent(true);
+        		pane.getChildren().add(c);
+        		//e.consume();	//en commentaire parce que le programme bug si présent
+        	}
+        });
+        
         
         
     }
