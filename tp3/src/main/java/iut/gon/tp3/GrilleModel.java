@@ -1,26 +1,24 @@
 package iut.gon.tp3;
 
-import javafx.scene.control.Label;
+import javafx.beans.property.SimpleStringProperty;
 
 public class GrilleModel {
-	private String[][] model = new String[3][3];
+	private SimpleStringProperty[][] tab = new SimpleStringProperty[3][3];
 	
 	public GrilleModel() {
         for (int lg = 0; lg < 3; lg++) {
             for (int col = 0; col < 3; col++) {
-                model[lg][col] = "truc " + lg + col;
+                tab[lg][col] = new SimpleStringProperty("M" + lg + col);
             }
         }
     }
 	
-	public String getCase(int i, int j) {
-		return model[i][j];
-	}
-	
-	public void setCase(int i, int j, String texte) {
-		model[i][j] = texte;
-	}
-	
-	
+	public SimpleStringProperty getCase(int lg, int col) {
+        return tab[lg][col];
+    }
+
+    public void setCase(int lg, int col, String texte) {
+        tab[lg][col].set(texte);
+    }
 	
 }

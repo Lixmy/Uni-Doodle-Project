@@ -22,15 +22,15 @@ public class GrilleController implements Initializable {
 		grille.setStyle("-fx-background-color: seashell");
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
-				Label lbl = new Label(model.getCase(i, j));
+				Label lbl = new Label();
 				
-				final int lig = i;
-				final int col = j;
+				final int lig = j;
+				final int col = i;
 				
 				lbl.setText(String.format("L%dC%d", i, j));
 				lbl.setOnMouseClicked(e -> {
 					model.setCase(lig, col, "bonjour");
-					lbl.setText(model.getCase(lig, col));
+					lbl.textProperty().bind(model.getCase(lig, col));
 				});
 				grille.add(lbl, i, j);
 				labels[i][j] = lbl;
