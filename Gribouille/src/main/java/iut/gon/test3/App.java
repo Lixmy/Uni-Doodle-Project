@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import iut.gon.gribouille.modele.Dessin;
+
 /**
  * JavaFX App
  */
@@ -21,7 +23,8 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("CadreGribouille"), 640, 480);
+    	FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("CadreGribouille.fxml"));
+        scene = new Scene(fxmlLoader.load(), 640, 480);
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(e -> {
@@ -29,6 +32,9 @@ public class App extends Application {
         		e.consume();
         	}
         });
+        
+        Dessin dessin = new Dessin();
+        ((GribouilleController) fxmlLoader.getController()).setDessin(dessin);
         
         /* Canvas dessin = (Canvas) scene.lookup("Canvas");
         dessin.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {

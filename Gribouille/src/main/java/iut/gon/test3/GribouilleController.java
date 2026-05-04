@@ -3,6 +3,7 @@ package iut.gon.test3;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import iut.gon.gribouille.modele.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -14,75 +15,104 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
 public class GribouilleController implements Initializable {
+
+	private double prevX;
+	private double prevY;
+	private Dessin dessin;
+	private Trace trace;
+
+	@FXML
+	private Label abscisse;
+
+	@FXML
+	private Rectangle blanc;
+
+	@FXML
+	private Rectangle bleu;
+
+	@FXML
+	private Canvas canvas;
+
+	@FXML
+	private ColorPicker choixCouleur;
+
+	@FXML
+	private Rectangle cyan;
+
+	@FXML
+	private Label epaisseur;
+
+	@FXML
+	private ToggleGroup groupe;
+
+	@FXML
+	private ToggleGroup groupe1;
+
+	@FXML
+	private Rectangle jaune;
+
+	@FXML
+	private Rectangle noir;
+
+	@FXML
+	private Label ordonnee;
+
+	@FXML
+	private Pane pane;
+
+	@FXML
+	private Rectangle rouge;
+
+	@FXML
+	private Rectangle vert;
+
+	@FXML
+	private Rectangle violet;
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+		canvas.widthProperty().bind(pane.widthProperty());
+		canvas.heightProperty().bind(pane.heightProperty());
 		
-		private double prevX;
-		private double prevY;
+		canvas.heightProperty().addListener((obs, old, newV) -> {
+			for (Figure figure : dessin.getFigures()) {
+				for (int i = 0; i < figure.getPoints().size()-1; i++) {
+					Point p = figure.getPoints().get(i);
+					Point p2 = figure.getPoints().get(i+1);
+					canvas.getGraphicsContext2D().strokeLine(p.getX(), p.getY(), p2.getX(), p2.getY());
+				}
+			}
+		});
+		
+		canvas.widthProperty().addListener((obs, old, newV) -> {
+			for (Figure figure : dessin.getFigures()) {
+				for (int i = 0; i < figure.getPoints().size()-1; i++) {
+					Point p = figure.getPoints().get(i);
+					Point p2 = figure.getPoints().get(i+1);
+					canvas.getGraphicsContext2D().strokeLine(p.getX(), p.getY(), p2.getX(), p2.getY());
+				}
+			}
+		});
 
-	    @FXML
-	    private Label abscisse;
+	}
 
-	    @FXML
-	    private Rectangle blanc;
+	public void setDessin(Dessin d) {
+		this.dessin = d;
+	}
 
-	    @FXML
-	    private Rectangle bleu;
+	public void onMousePressed(MouseEvent e) {
+		trace = new Trace(1, "", e.getX(), e.getY());
+		prevX = e.getX();
+		prevY = e.getY();
+		dessin.addFigure(trace);
+	}
 
-	    @FXML
-	    private Canvas canvas;
-
-	    @FXML
-	    private ColorPicker choixCouleur;
-
-	    @FXML
-	    private Rectangle cyan;
-
-	    @FXML
-	    private Label epaisseur;
-
-	    @FXML
-	    private ToggleGroup groupe;
-
-	    @FXML
-	    private ToggleGroup groupe1;
-
-	    @FXML
-	    private Rectangle jaune;
-
-	    @FXML
-	    private Rectangle noir;
-
-	    @FXML
-	    private Label ordonnee;
-
-	    @FXML
-	    private Pane pane;
-
-	    @FXML
-	    private Rectangle rouge;
-
-	    @FXML
-	    private Rectangle vert;
-
-	    @FXML
-	    private Rectangle violet;
-
-		@Override
-		public void initialize(URL location, ResourceBundle resources) {
-			canvas.widthProperty().bind(pane.widthProperty());
-			canvas.heightProperty().bind(pane.heightProperty());
-			
-		}
-	    
-	    public void onMousePressed(MouseEvent e) {
-	        prevX = e.getX();
-	       	prevY = e.getY();
-	    }
-	    
-	    
-	    public void onMouseDragged(MouseEvent e) {
-	    	canvas.getGraphicsContext2D().strokeLine(prevX, prevY, e.getX(), e.getY());
-	    	prevX = e.getX();
-        	prevY = e.getY();
-	    }
+	public void onMouseDragged(MouseEvent e) {
+		canvas.getGraphicsContext2D().strokeLine(prevX, prevY, e.getX(), e.getY());
+		prevX = e.getX();
+		prevY = e.getY();
+		trace.addPoint(prevX, prevY);
+	}
 
 }
