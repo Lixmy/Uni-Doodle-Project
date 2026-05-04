@@ -13,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -69,6 +70,12 @@ public class GrilleController implements Initializable {
   }
 
   private void onGagne(String joueur) {
+	  if(joueur !=null) {
+		  TextInputDialog text = new TextInputDialog();
+		  text.setContentText("qui êtes vous?");
+		  text.showAndWait();
+	  }
+	  
     //TODO demander le nom du joueur
     //TODO modifier scores
     //TODO appeler la table des scores
