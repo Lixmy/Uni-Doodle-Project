@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import iut.gon.gribouille.modele.*;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -16,8 +17,8 @@ import javafx.scene.shape.Rectangle;
 
 public class GribouilleController implements Initializable {
 
-	private double prevX;
-	private double prevY;
+	private SimpleDoubleProperty prevX;
+	private SimpleDoubleProperty prevY;
 	private Dessin dessin;
 	private Trace trace;
 
@@ -71,7 +72,14 @@ public class GribouilleController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		
+		prevX = new SimpleDoubleProperty(0);
+		prevY = new SimpleDoubleProperty(0);
+		
+		
+		abscisse.textProperty().bind(prevX.asString());;
+		ordonnee.textProperty().bind(prevY.asString());
+		
 		canvas.widthProperty().bind(pane.widthProperty());
 		canvas.heightProperty().bind(pane.heightProperty());
 		
@@ -103,16 +111,16 @@ public class GribouilleController implements Initializable {
 
 	public void onMousePressed(MouseEvent e) {
 		trace = new Trace(1, "", e.getX(), e.getY());
-		prevX = e.getX();
-		prevY = e.getY();
+		prevX.set(e.getX());
+		prevY.set(e.getY());
 		dessin.addFigure(trace);
 	}
 
 	public void onMouseDragged(MouseEvent e) {
-		canvas.getGraphicsContext2D().strokeLine(prevX, prevY, e.getX(), e.getY());
-		prevX = e.getX();
-		prevY = e.getY();
-		trace.addPoint(prevX, prevY);
+		canvas.getGraphicsContext2D().strokeLine(prevX.get(), prevY.get(), e.getX(), e.getY());
+		prevX.set(e.getX());
+		prevY.set(e.getY());
+		trace.addPoint(prevX.get(), prevY.get());
 	}
 
 }
