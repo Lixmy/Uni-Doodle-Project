@@ -30,7 +30,7 @@ public class App extends Application {
         	}
         });
         
-        Canvas dessin = (Canvas) scene.lookup("Canvas");
+        /* Canvas dessin = (Canvas) scene.lookup("Canvas");
         dessin.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
         	prevX = e.getX();
         	prevY = e.getY();
@@ -40,8 +40,7 @@ public class App extends Application {
         	dessin.getGraphicsContext2D().strokeLine(prevX, prevY, e.getX(), e.getY());
         	prevX = e.getX();
         	prevY = e.getY();
-        });
-        
+        }); */
         
     }
 

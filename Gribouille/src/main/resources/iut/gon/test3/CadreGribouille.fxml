@@ -21,7 +21,7 @@
 <?import javafx.scene.shape.Rectangle?>
 
 
-<BorderPane minHeight="200.0" minWidth="200.0" prefHeight="500.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="200.0" minWidth="200.0" prefHeight="500.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iut.gon.test3.GribouilleController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -70,9 +70,9 @@
       </MenuBar>
    </top>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Canvas height="417.0" width="623.0" />
+            <Canvas fx:id="canvas" onMousePressed="#onMousePressed" onMouseDragged="#onMouseDragged" height="417.0" width="623.0" />
             <HBox layoutX="185.0" layoutY="311.0" prefHeight="18.0" prefWidth="28.0" />
          </children>
       </Pane>
@@ -80,21 +80,21 @@
    <right>
       <VBox prefHeight="363.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <ColorPicker />
+            <ColorPicker fx:id="choixCouleur"/>
             <TilePane prefHeight="412.0" prefWidth="100.0" style="-fx-background-color: #BBBBBB;">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="44.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="4.0" width="44.0">
+                  <Rectangle fx:id="rouge" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="44.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="4.0" width="44.0">
                      <TilePane.margin>
                         <Insets left="3.0" right="3.0" top="3.0" />
                      </TilePane.margin>
                   </Rectangle>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff31" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f20ff" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fffee" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1fec" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff11f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+                  <Rectangle fx:id="vert" arcHeight="5.0" arcWidth="5.0" fill="#1fff31" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+                  <Rectangle fx:id="bleu" arcHeight="5.0" arcWidth="5.0" fill="#1f20ff" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+                  <Rectangle fx:id="cyan" arcHeight="5.0" arcWidth="5.0" fill="#1fffee" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+                  <Rectangle fx:id="violet" arcHeight="5.0" arcWidth="5.0" fill="#ff1fec" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+                  <Rectangle fx:id="jaune" arcHeight="5.0" arcWidth="5.0" fill="#fff11f" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+                  <Rectangle fx:id="noir" arcHeight="5.0" arcWidth="5.0" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
+                  <Rectangle fx:id="blanc" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="44.0" stroke="BLACK" strokeType="INSIDE" width="44.0" />
                </children>
             </TilePane>
          </children>
@@ -115,17 +115,17 @@
          <children>
             <HBox prefHeight="30.0" prefWidth="192.0">
                <children>
-                  <Label text="X : 0" />
+                  <Label fx:id="ordonnee" text="X : 0" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="192.0" GridPane.columnIndex="1">
                <children>
-                  <Label text="Y : 0" />
+                  <Label fx:id="abscisse" text="Y : 0" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="192.0" GridPane.columnIndex="2">
                <children>
-                  <Label text="Epaisseur : 3" />
+                  <Label fx:id="epaisseur" text="Epaisseur : 3" />
                </children>
             </HBox>
             <HBox prefHeight="30.0" prefWidth="192.0" GridPane.columnIndex="3">
