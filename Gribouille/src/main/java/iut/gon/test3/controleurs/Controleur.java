@@ -25,6 +25,8 @@ public class Controleur implements Initializable {
 	private CouleursController couleursController;
 	@FXML
 	private DessinController dessinController;
+	
+	private Outil outil = new OutilCrayon(this);
 
     public final SimpleObjectProperty<Color> couleur = 
         new SimpleObjectProperty<>(Color.BLACK);
@@ -39,13 +41,29 @@ public class Controleur implements Initializable {
     public final SimpleDoubleProperty precY = new SimpleDoubleProperty(0);
     
     private Dessin dessin = new Dessin();
-    private Trace trace;
+    private Figure trace;
     
     public void setDessinController(DessinController dc) {
     	this.dessinController = dc;
     }
     
-    public void dessine() {
+    public Figure getTrace() {
+		return trace;
+	}
+
+	public void setTrace(Figure trace) {
+		this.trace = trace;
+	}
+
+	public DessinController getDessinController() {
+		return dessinController;
+	}
+
+	public Dessin getDessin() {
+		return dessin;
+	}
+
+	public void dessine() {
     	dessinController.efface();
     	for (Figure figure : dessin.getFigures()) {
 			for (int i = 0; i < figure.getPoints().size()-1; i++) {
@@ -57,19 +75,27 @@ public class Controleur implements Initializable {
     }
     
     public void onMousePressed(MouseEvent e) {
-    	trace = new Trace(1, "", e.getX(), e.getY());
+    	outil.onMousePressed(e);
 		precX.set(e.getX());
 		precY.set(e.getY());
-		dessin.addFigure(trace);
     }
     
     public void onMouseDragged(MouseEvent e) {
-    	dessinController.trace(precX.get(), precY.get(), e.getX(), e.getY());
+    	outil.onMouseDragged(e);
 		precX.set(e.getX());
 		precY.set(e.getY());
-		trace.addPoint(precX.get(), precY.get());
     }
-
+    
+    public void onCrayon() {
+    	outil = new OutilCrayon(this);
+    	statutController.outil.setText("Crayon");
+    }
+    
+    public void onEtoile() {
+    	outil = new OutilEtoile(this);
+    	statutController.outil.setText("Etoile");
+    }
+ 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		menusController.setControleur(this);

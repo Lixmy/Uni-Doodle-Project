@@ -29,10 +29,10 @@
             <Label fx:id="epaisseur" text="Epaisseur : 3" />
         </HBox>
         <HBox prefHeight="30.0" prefWidth="192.0" GridPane.columnIndex="3">
-            <Label text="Outil" />
+            <Label fx:id="outil" text="Outil" />
         </HBox>
         <HBox prefHeight="30.0" prefWidth="192.0" GridPane.columnIndex="4">
-            <Label text="Couleur" />
+            <Label fx:id="couleurLabel" text="Couleur" />
         </HBox>
     </children>
 </GridPane>

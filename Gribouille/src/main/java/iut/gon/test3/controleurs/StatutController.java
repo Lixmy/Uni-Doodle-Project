@@ -17,12 +17,19 @@ public class StatutController implements Initializable {
 	
 	@FXML
 	public Label epaisseur;
-
+	
+	@FXML
+	public Label outil;
+	
+	@FXML
+	public Label couleurLabel;
+	
 	public void setControleur(Controleur c) {
 		this.controleur = c;
 		abscisse.textProperty().bind(c.precX.asString("X : %.0f"));
 	    ordonnee.textProperty().bind(c.precY.asString("Y : %.0f"));
 	    epaisseur.textProperty().bind(c.epaisseur.asString("Epaisseur : %d"));
+	    couleurLabel.textProperty().bind(c.couleur.asString(""));
 	}
 
 	@Override

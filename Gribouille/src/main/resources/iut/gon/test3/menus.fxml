@@ -20,10 +20,10 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Outils">
             <items>
-                <RadioMenuItem mnemonicParsing="false" text="Etoile">
+                <RadioMenuItem mnemonicParsing="false" text="Etoile" fx:id="etoile">
                     <toggleGroup><ToggleGroup fx:id="groupe1" /></toggleGroup>
                 </RadioMenuItem>
-                <RadioMenuItem mnemonicParsing="false" text="Crayon" toggleGroup="$groupe1" />
+                <RadioMenuItem mnemonicParsing="false" text="Crayon" toggleGroup="$groupe1" fx:id="crayon"/>
                 <Menu mnemonicParsing="false" text="Epaisseur">
                     <items>
                         <RadioMenuItem mnemonicParsing="false" text="1">
