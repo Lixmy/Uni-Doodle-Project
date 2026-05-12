@@ -5,5 +5,6 @@ module iut.gon.test3 {
 	requires javafx.base;
 
     opens iut.gon.test3 to javafx.fxml;
+    opens iut.gon.test3.controleurs;
     exports iut.gon.test3;
 }

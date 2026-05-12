@@ -4,13 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import iut.gon.gribouille.modele.Dessin;
 
 /**
  * JavaFX App
@@ -25,30 +21,14 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("CadreGribouille.fxml"));
         scene = new Scene(fxmlLoader.load(), 640, 480);
-        Dessin dessin = new Dessin();
         stage.setScene(scene);
         stage.show();
-        stage.titleProperty().bind(dessin.nomDuFichierProperty());
         stage.setOnCloseRequest(e -> {
         	if(Dialogues.confirmation() == true) {
         		e.consume();
         	}
         });
         
-    
-        ((GribouilleController) fxmlLoader.getController()).setDessin(dessin);
-        
-        /* Canvas dessin = (Canvas) scene.lookup("Canvas");
-        dessin.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
-        	prevX = e.getX();
-        	prevY = e.getY();
-        });
-        
-        dessin.addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> {
-        	dessin.getGraphicsContext2D().strokeLine(prevX, prevY, e.getX(), e.getY());
-        	prevX = e.getX();
-        	prevY = e.getY();
-        }); */
         
     }
 
