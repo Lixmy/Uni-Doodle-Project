@@ -10,8 +10,10 @@ public class OutilCrayon extends Outil {
 	}
 
 	public void onMousePressed(MouseEvent e) {
-		controleur.setTrace(new Trace(1, "", e.getX(), e.getY()));
+		controleur.setTrace(new Trace(controleur.epaisseur.get(), controleur.couleur.get().toString(), e.getX(), e.getY()));
 		controleur.getDessin().addFigure(controleur.getTrace());
+		controleur.getDessinController().setCouleur(controleur.couleur.get());
+		controleur.getDessinController().setEpaisseur(controleur.epaisseur.get());
 	}
 	
 	public void onMouseDragged(MouseEvent e) {

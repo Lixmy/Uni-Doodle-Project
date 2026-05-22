@@ -10,7 +10,7 @@
       prefHeight="363.0" prefWidth="100.0">
     <children>
         <ColorPicker fx:id="choixCouleur"/>
-        <TilePane prefHeight="412.0" prefWidth="100.0" style="-fx-background-color: #BBBBBB;">
+        <TilePane prefHeight="412.0" prefWidth="100.0" style="-fx-background-color: #BBBBBB;" fx:id="couleurCliquee" onMouseClicked="#onCouleurCliquee">
             <children>
                 <Rectangle fx:id="rouge" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="4.0" width="44.0">
                     <TilePane.margin><Insets left="3.0" right="3.0" top="3.0" /></TilePane.margin>

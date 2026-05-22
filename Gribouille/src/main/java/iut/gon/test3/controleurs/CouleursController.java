@@ -6,6 +6,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class CouleursController implements Initializable {
 	
@@ -13,6 +15,9 @@ public class CouleursController implements Initializable {
 	
 	@FXML
 	public ColorPicker choixCouleur;
+	
+	@FXML
+	public Rectangle rouge;
 	
 	@FXML
 	public Rectangle vert;
@@ -35,6 +40,27 @@ public class CouleursController implements Initializable {
 	@FXML
 	public Rectangle blanc;
 
+	@FXML
+	public Rectangle rectangleCourant = null;
+	
+	public void onCouleurCliquee(MouseEvent e) {
+		Rectangle rect = (Rectangle) e.getTarget();
+		
+		if(rectangleCourant != null) {
+			rectangleCourant.setArcWidth(5);
+			rectangleCourant.setArcHeight(5);
+			rectangleCourant.setStrokeWidth(1);
+		}
+		rect.setArcWidth(10);
+		rect.setArcHeight(10);
+		rect.setStrokeWidth(5);
+		
+		rectangleCourant = rect;
+		
+		Color couleur = (Color) rect.getFill();
+		controleur.setCouleur(couleur);
+	}
+	
 	public void setControleur(Controleur controleur) {
 		this.controleur = controleur;
 	}

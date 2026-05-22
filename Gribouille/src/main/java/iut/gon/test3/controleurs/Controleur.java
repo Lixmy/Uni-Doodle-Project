@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import iut.gon.gribouille.modele.Dessin;
+import iut.gon.gribouille.modele.Etoile;
 import iut.gon.gribouille.modele.Figure;
 import iut.gon.gribouille.modele.Point;
 import iut.gon.gribouille.modele.Trace;
@@ -66,11 +67,21 @@ public class Controleur implements Initializable {
 	public void dessine() {
     	dessinController.efface();
     	for (Figure figure : dessin.getFigures()) {
-			for (int i = 0; i < figure.getPoints().size()-1; i++) {
-				Point p = figure.getPoints().get(i);
-				Point p2 = figure.getPoints().get(i+1);
-				dessinController. trace(p.getX(), p.getY(), p2.getX(), p2.getY());
-			}
+    		dessinController.setEpaisseur(figure.getEpaisseur());
+    		dessinController.setCouleur(Color.valueOf(figure.getCouleur()));
+    		
+    		if(figure instanceof Etoile) {
+    			Etoile etoile = (Etoile) figure;
+    			for(Point p : etoile.getPoints()) {
+    				dessinController.trace(etoile.getCentre().getX(), etoile.getCentre().getY(), p.getX(), p.getY());
+    			}
+    		} else {
+    			for (int i = 0; i < figure.getPoints().size()-1; i++) {
+    				Point p = figure.getPoints().get(i);
+    				Point p2 = figure.getPoints().get(i+1);
+    				dessinController. trace(p.getX(), p.getY(), p2.getX(), p2.getY());
+    			}
+    		}
 		}
     }
     
@@ -99,6 +110,10 @@ public class Controleur implements Initializable {
     public void setEpaisseur(int val) {
     	epaisseur.set(val);
     	dessinController.setEpaisseur(val);
+    }
+    
+    public void setCouleur(Color c) {
+    	couleur.set(c);
     }
  
 	@Override
