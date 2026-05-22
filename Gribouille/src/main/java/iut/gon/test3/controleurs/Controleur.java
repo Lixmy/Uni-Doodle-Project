@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.fxml.FXML;
 
 public class Controleur implements Initializable {
-	
+
 	@FXML
 	private MenusController menusController;
 	@FXML
@@ -26,29 +26,26 @@ public class Controleur implements Initializable {
 	private CouleursController couleursController;
 	@FXML
 	private DessinController dessinController;
-	
+
 	private Outil outil = new OutilCrayon(this);
 
-    public final SimpleObjectProperty<Color> couleur = 
-        new SimpleObjectProperty<>(Color.BLACK);
-    
-    public final SimpleIntegerProperty epaisseur = 
-        new SimpleIntegerProperty(1);
-    
-    public SimpleObjectProperty<Dessin> figureCourante = 
-        new SimpleObjectProperty<>();
+	public final SimpleObjectProperty<Color> couleur = new SimpleObjectProperty<>(Color.BLACK);
 
-    public final SimpleDoubleProperty precX = new SimpleDoubleProperty(0);
-    public final SimpleDoubleProperty precY = new SimpleDoubleProperty(0);
-    
-    private Dessin dessin = new Dessin();
-    private Figure trace;
-    
-    public void setDessinController(DessinController dc) {
-    	this.dessinController = dc;
-    }
-    
-    public Figure getTrace() {
+	public final SimpleIntegerProperty epaisseur = new SimpleIntegerProperty(1);
+
+	public SimpleObjectProperty<Dessin> figureCourante = new SimpleObjectProperty<>();
+
+	public final SimpleDoubleProperty precX = new SimpleDoubleProperty(0);
+	public final SimpleDoubleProperty precY = new SimpleDoubleProperty(0);
+
+	private Dessin dessin = new Dessin();
+	private Figure trace;
+
+	public void setDessinController(DessinController dc) {
+		this.dessinController = dc;
+	}
+
+	public Figure getTrace() {
 		return trace;
 	}
 
@@ -65,64 +62,102 @@ public class Controleur implements Initializable {
 	}
 
 	public void dessine() {
-    	dessinController.efface();
-    	for (Figure figure : dessin.getFigures()) {
-    		dessinController.setEpaisseur(figure.getEpaisseur());
-    		dessinController.setCouleur(Color.valueOf(figure.getCouleur()));
-    		
-    		if(figure instanceof Etoile) {
-    			Etoile etoile = (Etoile) figure;
-    			for(Point p : etoile.getPoints()) {
-    				dessinController.trace(etoile.getCentre().getX(), etoile.getCentre().getY(), p.getX(), p.getY());
-    			}
-    		} else {
-    			for (int i = 0; i < figure.getPoints().size()-1; i++) {
-    				Point p = figure.getPoints().get(i);
-    				Point p2 = figure.getPoints().get(i+1);
-    				dessinController. trace(p.getX(), p.getY(), p2.getX(), p2.getY());
-    			}
-    		}
+		dessinController.efface();
+		for (Figure figure : dessin.getFigures()) {
+			dessinController.setEpaisseur(figure.getEpaisseur());
+			dessinController.setCouleur(Color.valueOf(figure.getCouleur()));
+
+			if (figure instanceof Etoile) {
+				Etoile etoile = (Etoile) figure;
+				for (Point p : etoile.getPoints()) {
+					dessinController.trace(etoile.getCentre().getX(), etoile.getCentre().getY(), p.getX(), p.getY());
+				}
+			} else {
+				for (int i = 0; i < figure.getPoints().size() - 1; i++) {
+					Point p = figure.getPoints().get(i);
+					Point p2 = figure.getPoints().get(i + 1);
+					dessinController.trace(p.getX(), p.getY(), p2.getX(), p2.getY());
+				}
+			}
 		}
-    }
-    
-    public void onMousePressed(MouseEvent e) {
-    	outil.onMousePressed(e);
+	}
+
+	public void onMousePressed(MouseEvent e) {
+		outil.onMousePressed(e);
 		precX.set(e.getX());
 		precY.set(e.getY());
-    }
-    
-    public void onMouseDragged(MouseEvent e) {
-    	outil.onMouseDragged(e);
+	}
+
+	public void onMouseDragged(MouseEvent e) {
+		outil.onMouseDragged(e);
 		precX.set(e.getX());
 		precY.set(e.getY());
-    }
-    
-    public void onCrayon() {
-    	outil = new OutilCrayon(this);
-    	statutController.outil.setText("Crayon");
-    }
-    
-    public void onEtoile() {
-    	outil = new OutilEtoile(this);
-    	statutController.outil.setText("Etoile");
-    }
-    
-    public void setEpaisseur(int val) {
-    	epaisseur.set(val);
-    	dessinController.setEpaisseur(val);
-    }
-    
-    public void setCouleur(Color c) {
-    	couleur.set(c);
-    }
- 
+	}
+
+	public void onKeyPressed(String key) {
+		switch (key) {
+		case "c":
+			onCrayon();
+			break;
+		case "e":
+			onEtoile();
+			break;
+		case "1":
+			setEpaisseur(1);
+			break;
+		case "2":
+			setEpaisseur(2);
+			break;
+		case "3":
+			setEpaisseur(3);
+			break;
+		case "4":
+			setEpaisseur(4);
+			break;
+		case "5":
+			setEpaisseur(5);
+			break;
+		case "6":
+			setEpaisseur(6);
+			break;
+		case "7":
+			setEpaisseur(7);
+			break;
+		case "8":
+			setEpaisseur(8);
+			break;
+		case "9":
+			setEpaisseur(9);
+			break;
+		}
+	}
+
+	public void onCrayon() {
+		outil = new OutilCrayon(this);
+		statutController.outil.setText("Crayon");
+	}
+
+	public void onEtoile() {
+		outil = new OutilEtoile(this);
+		statutController.outil.setText("Etoile");
+	}
+
+	public void setEpaisseur(int val) {
+		epaisseur.set(val);
+		dessinController.setEpaisseur(val);
+	}
+
+	public void setCouleur(Color c) {
+		couleur.set(c);
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		menusController.setControleur(this);
-	    statutController.setControleur(this);
-	    couleursController.setControleur(this);
-	    dessinController.setControleur(this);
-	    setDessinController(dessinController);
-		
+		statutController.setControleur(this);
+		couleursController.setControleur(this);
+		dessinController.setControleur(this);
+		setDessinController(dessinController);
+
 	}
 }

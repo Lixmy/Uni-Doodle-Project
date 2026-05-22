@@ -6,47 +6,59 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.ToggleGroup?>
 <MenuBar xmlns="http://javafx.com/javafx/17"
-         xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="iut.gon.test3.controleurs.MenusController">
-    <menus>
-        <Menu mnemonicParsing="false" text="Dessin">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Charger" />
-                <MenuItem mnemonicParsing="false" text="Sauvegarder" />
-                <MenuItem mnemonicParsing="false" text="Exporter" />
-                <SeparatorMenuItem mnemonicParsing="false" />
-                <MenuItem mnemonicParsing="false" text="Quitter" />
-            </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Outils">
-            <items>
-                <RadioMenuItem mnemonicParsing="false" text="Etoile" fx:id="etoile">
-                    <toggleGroup><ToggleGroup fx:id="groupe1" /></toggleGroup>
-                </RadioMenuItem>
-                <RadioMenuItem mnemonicParsing="false" text="Crayon" toggleGroup="$groupe1" fx:id="crayon"/>
-                <Menu mnemonicParsing="false" text="Epaisseur">
-                    <items>
-                        <RadioMenuItem mnemonicParsing="false" text="1">
-                            <toggleGroup>
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="iut.gon.test3.controleurs.MenusController">
+	<menus>
+		<Menu mnemonicParsing="false" text="Dessin">
+			<items>
+				<MenuItem mnemonicParsing="false" text="Charger" />
+				<MenuItem mnemonicParsing="false" text="Sauvegarder" />
+				<MenuItem mnemonicParsing="false" text="Exporter" />
+				<SeparatorMenuItem mnemonicParsing="false" />
+				<MenuItem mnemonicParsing="false" text="Quitter" />
+			</items>
+		</Menu>
+		<Menu mnemonicParsing="false" text="Outils">
+			<items>
+				<RadioMenuItem mnemonicParsing="false" text="Etoile"
+					fx:id="etoile">
+					<toggleGroup>
+						<ToggleGroup fx:id="groupe1" />
+					</toggleGroup>
+				</RadioMenuItem>
+				<RadioMenuItem mnemonicParsing="false" text="Crayon"
+					toggleGroup="$groupe1" fx:id="crayon" />
+				<Menu mnemonicParsing="false" text="Epaisseur">
+					<items>
+						<RadioMenuItem mnemonicParsing="false" text="1">
+							<toggleGroup>
 								<ToggleGroup fx:id="groupe" />
 							</toggleGroup>
-                        </RadioMenuItem>
-                        <RadioMenuItem mnemonicParsing="false" text="2" toggleGroup="$groupe" />
-                        <RadioMenuItem mnemonicParsing="false" text="3" toggleGroup="$groupe" />
-                        <RadioMenuItem mnemonicParsing="false" text="4" toggleGroup="$groupe" />
-                        <RadioMenuItem mnemonicParsing="false" text="5" toggleGroup="$groupe" />
-                        <RadioMenuItem mnemonicParsing="false" text="6" toggleGroup="$groupe" />
-                        <RadioMenuItem mnemonicParsing="false" text="7" toggleGroup="$groupe" />
-                        <RadioMenuItem mnemonicParsing="false" text="8" toggleGroup="$groupe" />
-                        <RadioMenuItem mnemonicParsing="false" text="9" toggleGroup="$groupe" />
-                    </items>
-                </Menu>
-            </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Aide">
-            <items>
-                <MenuItem mnemonicParsing="false" text="à propos" />
-            </items>
-        </Menu>
-    </menus>
+						</RadioMenuItem>
+						<RadioMenuItem mnemonicParsing="false" text="2"
+							toggleGroup="$groupe" />
+						<RadioMenuItem mnemonicParsing="false" text="3"
+							toggleGroup="$groupe" />
+						<RadioMenuItem mnemonicParsing="false" text="4"
+							toggleGroup="$groupe" />
+						<RadioMenuItem mnemonicParsing="false" text="5"
+							toggleGroup="$groupe" />
+						<RadioMenuItem mnemonicParsing="false" text="6"
+							toggleGroup="$groupe" />
+						<RadioMenuItem mnemonicParsing="false" text="7"
+							toggleGroup="$groupe" />
+						<RadioMenuItem mnemonicParsing="false" text="8"
+							toggleGroup="$groupe" />
+						<RadioMenuItem mnemonicParsing="false" text="9"
+							toggleGroup="$groupe" />
+					</items>
+				</Menu>
+			</items>
+		</Menu>
+		<Menu mnemonicParsing="false" text="Aide">
+			<items>
+				<MenuItem mnemonicParsing="false" text="à propos" />
+			</items>
+		</Menu>
+	</menus>
 </MenuBar>

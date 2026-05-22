@@ -9,36 +9,35 @@ import java.util.ResourceBundle;
 
 public class MenusController implements Initializable {
 
-    private Controleur controleur;
+	private Controleur controleur;
 
-    @FXML
-    private ToggleGroup groupe;
-    @FXML
-    private ToggleGroup groupe1;
-    @FXML
-    private RadioMenuItem etoile;
-    @FXML
-    private RadioMenuItem crayon;
+	@FXML
+	private ToggleGroup groupe;
+	@FXML
+	private ToggleGroup groupe1;
+	@FXML
+	private RadioMenuItem etoile;
+	@FXML
+	private RadioMenuItem crayon;
 
-    public void setControleur(Controleur c) {
-        this.controleur = c;
-        groupe.selectedToggleProperty().addListener((obs, old, newV) -> {
-        	if(newV != null) {
-        		int val = Integer.parseInt(((RadioMenuItem) newV).getText());
-        		controleur.setEpaisseur(val);
-        	}
-        });
-    }
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    	groupe1.selectedToggleProperty().addListener((obs, old, newV) -> {
-	    	if(newV == crayon) {
-	    		controleur.onCrayon();
-	    	}
-	    	else if(newV == etoile) {
-	    		controleur.onEtoile();
-	    	}
-    	});
-    }
+	public void setControleur(Controleur c) {
+		this.controleur = c;
+		groupe.selectedToggleProperty().addListener((obs, old, newV) -> {
+			if (newV != null) {
+				int val = Integer.parseInt(((RadioMenuItem) newV).getText());
+				controleur.setEpaisseur(val);
+			}
+		});
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		groupe1.selectedToggleProperty().addListener((obs, old, newV) -> {
+			if (newV == crayon) {
+				controleur.onCrayon();
+			} else if (newV == etoile) {
+				controleur.onEtoile();
+			}
+		});
+	}
 }
