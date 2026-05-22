@@ -27,10 +27,18 @@
                 <Menu mnemonicParsing="false" text="Epaisseur">
                     <items>
                         <RadioMenuItem mnemonicParsing="false" text="1">
-                            <toggleGroup><ToggleGroup fx:id="groupe" /></toggleGroup>
+                            <toggleGroup>
+								<ToggleGroup fx:id="groupe" />
+							</toggleGroup>
                         </RadioMenuItem>
                         <RadioMenuItem mnemonicParsing="false" text="2" toggleGroup="$groupe" />
                         <RadioMenuItem mnemonicParsing="false" text="3" toggleGroup="$groupe" />
+                        <RadioMenuItem mnemonicParsing="false" text="4" toggleGroup="$groupe" />
+                        <RadioMenuItem mnemonicParsing="false" text="5" toggleGroup="$groupe" />
+                        <RadioMenuItem mnemonicParsing="false" text="6" toggleGroup="$groupe" />
+                        <RadioMenuItem mnemonicParsing="false" text="7" toggleGroup="$groupe" />
+                        <RadioMenuItem mnemonicParsing="false" text="8" toggleGroup="$groupe" />
+                        <RadioMenuItem mnemonicParsing="false" text="9" toggleGroup="$groupe" />
                     </items>
                 </Menu>
             </items>

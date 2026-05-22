@@ -22,6 +22,12 @@ public class MenusController implements Initializable {
 
     public void setControleur(Controleur c) {
         this.controleur = c;
+        groupe.selectedToggleProperty().addListener((obs, old, newV) -> {
+        	if(newV != null) {
+        		int val = Integer.parseInt(((RadioMenuItem) newV).getText());
+        		controleur.setEpaisseur(val);
+        	}
+        });
     }
     
     @Override

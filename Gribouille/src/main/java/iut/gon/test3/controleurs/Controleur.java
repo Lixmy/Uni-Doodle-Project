@@ -95,6 +95,11 @@ public class Controleur implements Initializable {
     	outil = new OutilEtoile(this);
     	statutController.outil.setText("Etoile");
     }
+    
+    public void setEpaisseur(int val) {
+    	epaisseur.set(val);
+    	dessinController.setEpaisseur(val);
+    }
  
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
