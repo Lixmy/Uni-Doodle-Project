@@ -4,3 +4,7 @@
 .table-cell:hover {
     -fx-background-color: magenta;
 }
+
+.table-cell:negatif {
+	-fx-text-fill: red;
+}

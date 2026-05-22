@@ -6,6 +6,7 @@ import fr.iutgon.tp6.modele.Produit;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberExpression;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -86,6 +87,10 @@ public class FactureController implements Initializable {
 		        return cellData.getValue().getProduit().prixProperty();
 		    }
 		});
+		
+		prixUnitaire.setCellFactory(col -> new CelluleMonetaire());
+		totalHT.setCellFactory(col -> new CelluleMonetaire());
+		totalTTC.setCellFactory(col -> new CelluleMonetaire());
 	}
 
 
@@ -94,9 +99,15 @@ public class FactureController implements Initializable {
 		List<Produit> produits = FabriqueProduits.getProduits();
 		Produit produit = produits.get(rand.nextInt(produits.size()));
 
-		int qte = rand.nextInt();
+		int qte = rand.nextInt(10) + 1;
 
 		Ligne ligne = new Ligne(qte, produit);
 		table.getItems().add(ligne);
+		
+		NumberExpression somme = new SimpleIntegerProperty(0);
+		for (Ligne l : table.getItems()) {
+		    somme = Bindings.add(somme, l.totalTTCProperty());
+		}
+		sommeFacture.textProperty().bind(somme.asString("%.2f"));
 	}
 }
