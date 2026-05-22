@@ -49,12 +49,25 @@ public class FactureController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		qte.setCellValueFactory(new PropertyValueFactory<>("qte"));
-		
+		qte.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 		produit.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ligne, Produit>, ObservableValue<Produit>>() {
 			public ObservableValue<Produit> call(TableColumn.CellDataFeatures<Ligne, Produit> cellData) {
 				return cellData.getValue().produitProperty();
 			}
 		});
+		
+		ObservableList<Produit> listeProduits = FXCollections.observableList(FabriqueProduits.getProduits());
+		produit.setCellFactory(ChoiceBoxTableCell.forTableColumn(new StringConverter<Produit>() {
+		    public String toString(Produit p) {
+		        return p.getNom();
+		    }
+		    public Produit fromString(String nom) {
+		        for (Produit p : FabriqueProduits.getProduits()) {
+		            if (p.getNom().equals(nom)) return p;
+		        }
+		        return null;
+		    }
+		}, listeProduits));
 		
 		totalHT.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ligne, Number>, ObservableValue<Number>>() {
 	        public ObservableValue<Number> call(TableColumn.CellDataFeatures<Ligne, Number> cellData) {
@@ -68,6 +81,11 @@ public class FactureController implements Initializable {
 	        }
 	    });
 		
+		prixUnitaire.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ligne, Number>, ObservableValue<Number>>() {
+		    public ObservableValue<Number> call(TableColumn.CellDataFeatures<Ligne, Number> cellData) {
+		        return cellData.getValue().getProduit().prixProperty();
+		    }
+		});
 	}
 
 
