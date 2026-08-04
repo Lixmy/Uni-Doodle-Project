@@ -4,3 +4,9 @@ In this repo you will find:
 - several intermediate versions of the doodle project (gribouille_tp2, gribouille_tp3 etc...)
 - the stable and final branch of the project (gribouille_stable)
 - other smaller projects that we did as practice before applying the knowledge to the main doodle project (tp4, tp5 etc...)
+
+
+/// HOW TO LAUNCH THE FINAL VERSION ///
+- pull the repo on the gribouille_stable branch
+- open the project with your Java editor (Warning : the project was created using Eclipse, there could be migration problems if you're using another IDE...)
+- launch the app
